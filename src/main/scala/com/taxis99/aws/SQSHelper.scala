@@ -18,7 +18,7 @@ class SQSHelper(accessKey: String, secretKey: String, queueName: String, endpoin
   private lazy val queueUrl = client.createQueue(new CreateQueueRequest(queueName)).getQueueUrl
 
   def fetchMessage = {
-    val request = new ReceiveMessageRequest(queueUrl).withMaxNumberOfMessages(1).withAttributeNames("ApproximateReceiveCount")
+    val request = new ReceiveMessageRequest(queueUrl).withMaxNumberOfMessages(1).withAttributeNames("ApproximateReceiveCount", "SentTimestamp")
     client.receiveMessage(request).getMessages().asScala.toList.headOption
   }
 
