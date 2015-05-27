@@ -19,10 +19,12 @@ class SQSHelper(accessKey: String, secretKey: String, queueName: String, endpoin
     (newClient, newQueueUrl)
   }
 
+  def fetchMessage() = fetchMessages(maxNumberOfMessages = 1)
+
   /**
-  * @param maxNumberOfMessages must be between 1 and 10, if provided.
+  * @param maxNumberOfMessages must be between 1 and 10.
   */
-  def fetchMessages(maxNumberOfMessages: Int = 1): List[Message] = {
+  def fetchMessages(maxNumberOfMessages: Int): List[Message] = {
     val request = (new ReceiveMessageRequest(queueUrl)).withMaxNumberOfMessages(maxNumberOfMessages).withAttributeNames("ApproximateReceiveCount", "SentTimestamp")
     client.receiveMessage(request).getMessages().asScala.toList
   }
