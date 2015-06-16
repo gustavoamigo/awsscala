@@ -7,18 +7,19 @@ helpers to deal with Java -> scala translations and paradigms
 
 For sbt builds, add the following to your build.sbt:
 
-    resolvers += "99taxis" at "http://dl.bintray.com/content/99taxis/maven"
+    resolvers += "bintray.99taxis OS releases" at "http://dl.bintray.com/content/99taxis/maven"
+    libraryDependencies += "com.taxis99" %% "awsscala" % "X.Y.Z",
 
-For Maven builds, add:
+For Maven builds, add the library and:
 
     <repositories>
       <repository>
-        <id>99taxis</id>
+        <id>BinTray 99Taxis OS releases</id>
         <url>http://dl.bintray.com/content/99taxis/maven</url>
       </repository>
     </repositories>
 
-The version comes from git tags.
+The version comes from the corresponding Git tag.
 
 ## Instructions for Development
 
