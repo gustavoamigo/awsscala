@@ -12,7 +12,9 @@ scalaVersion := "2.11.6"
 crossScalaVersions := Seq("2.10.6", "2.11.6")
 
 libraryDependencies ++= Seq(
-  "org.scalatest" %% "scalatest" % "2.2.4" % "test"
+  "com.amazonaws" % "aws-java-sdk-sqs" % "1.9.40",
+  "org.scalatest" %% "scalatest" % "2.2.4" % "test",
+  "org.mockito" % "mockito-all" % "1.9.5" % "test"
 )
 
 bintraySettings

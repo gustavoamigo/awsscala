@@ -11,15 +11,17 @@ import com.amazonaws.services.sqs.model._
  * Helper to handle SQS Interface
  */
 class SQSHelper(accessKey: String, secretKey: String, queueName: String, endpoint: String) {
-  
+
+  def createClient(): AmazonSQSClient = new AmazonSQSAsyncClient(new BasicAWSCredentials(accessKey, secretKey))
+
   private lazy val (client, queueUrl) = {
-    val newClient = new AmazonSQSClient(new BasicAWSCredentials(accessKey, secretKey))
+    val newClient = createClient()
     newClient.setEndpoint(endpoint)
     val newQueueUrl = newClient.createQueue(new CreateQueueRequest(queueName)).getQueueUrl
     (newClient, newQueueUrl)
   }
 
-  def fetchMessage() = fetchMessages(maxNumberOfMessages = 1)
+  def fetchMessage() = fetchMessages(maxNumberOfMessages = 1).headOption
 
   /**
   * @param maxNumberOfMessages must be between 1 and 10.
