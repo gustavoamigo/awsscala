@@ -24,6 +24,12 @@ project/plugins/project/
 /project/target/
 /target/
 
+# Eclipse specific
+/.classpath
+/.project
+/.cache-main
+/.cache-tests
+
 # IDEA specific
 /.idea/
 /bin/
