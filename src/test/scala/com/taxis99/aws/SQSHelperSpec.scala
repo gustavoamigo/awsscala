@@ -1,14 +1,15 @@
 package com.taxis99.aws
 
-import org.scalatest.{WordSpec, MustMatchers}
-import org.mockito.Mockito._
 import org.mockito.Matchers._
+import org.mockito.Mockito._
+import org.scalatest.{ Finders, MustMatchers, WordSpec }
+
 import com.amazonaws.services.sqs.AmazonSQSClient
 import com.amazonaws.services.sqs.model.CreateQueueRequest
 import com.amazonaws.services.sqs.model.CreateQueueResult
+import com.amazonaws.services.sqs.model.Message
 import com.amazonaws.services.sqs.model.ReceiveMessageRequest
 import com.amazonaws.services.sqs.model.ReceiveMessageResult
-import com.amazonaws.services.sqs.model.Message
 
 class SQSHelperSpec extends WordSpec with MustMatchers {
 

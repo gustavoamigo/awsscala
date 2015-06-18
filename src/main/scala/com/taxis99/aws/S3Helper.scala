@@ -6,20 +6,23 @@ import com.amazonaws.{ Protocol, ClientConfiguration }
 import com.amazonaws.auth.BasicAWSCredentials
 import com.amazonaws.services.s3.AmazonS3Client
 
-trait S3Helper {
+/**
+ * Helper to handle S3 Interface
+ */
+class S3Helper(accessKey: String, secretKey: String, bucketName: String, endpoint: String) {
 
-  val awsCredential = Configuration.awsCredentials.accessKey
-
-  val awsSecret = Configuration.awsCredentials.secretKey
-
-  lazy val s3 =  {
+  def createClient(): AmazonS3Client = {
     val clientConfig = new ClientConfiguration()
     clientConfig.setProtocol(Protocol.HTTP)
-    new AmazonS3Client(new BasicAWSCredentials(awsCredential, awsSecret), clientConfig)
+    val client = new AmazonS3Client(new BasicAWSCredentials(accessKey, secretKey), clientConfig)
+    client.setEndpoint(endpoint)
+    client
   }
 
-  def listFiles(bucketName: String, prefix: String) = {
-    s3.listObjects(bucketName, prefix).getObjectSummaries.sortBy(_.getLastModified).reverse
+  lazy val client = createClient()
+
+  def listFiles(prefix: String) = {
+    client.listObjects(bucketName, prefix).getObjectSummaries.sortBy(_.getLastModified).reverse
   }
 
 }
