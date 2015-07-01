@@ -12,9 +12,7 @@ import com.amazonaws.services.s3.AmazonS3Client
 class S3Helper(accessKey: String, secretKey: String, bucketName: String, endpoint: String) {
 
   def createClient(): AmazonS3Client = {
-    val clientConfig = new ClientConfiguration()
-    clientConfig.setProtocol(Protocol.HTTP)
-    val client = new AmazonS3Client(new BasicAWSCredentials(accessKey, secretKey), clientConfig)
+    val client = new AmazonS3Client(new BasicAWSCredentials(accessKey, secretKey))
     client.setEndpoint(endpoint)
     client
   }
