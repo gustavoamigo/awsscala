@@ -9,13 +9,9 @@ import com.amazonaws.services.s3.AmazonS3Client
 /**
  * Helper to handle S3 Interface
  */
-class S3Helper(accessKey: String, secretKey: String, bucketName: String, endpoint: String) {
+class S3Helper(accessKey: String, secretKey: String, bucketName: String) {
 
-  def createClient(): AmazonS3Client = {
-    val client = new AmazonS3Client(new BasicAWSCredentials(accessKey, secretKey))
-    client.setEndpoint(endpoint)
-    client
-  }
+  def createClient(): AmazonS3Client = new AmazonS3Client(new BasicAWSCredentials(accessKey, secretKey))
 
   lazy val client = createClient()
 

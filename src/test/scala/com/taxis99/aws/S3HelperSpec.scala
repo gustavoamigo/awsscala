@@ -10,7 +10,7 @@ import com.amazonaws.services.s3.model.S3ObjectSummary
 
 class S3HelperSpec extends WordSpec with MustMatchers {
 
-  object S3Helper extends S3Helper(accessKey = "x", secretKey = "y", bucketName = "bucket", endpoint = "localhost:1234") {
+  object S3Helper extends S3Helper(accessKey = "x", secretKey = "y", bucketName = "bucket") {
     override def createClient() = {
       val client = mock(classOf[AmazonS3Client])
       val objectListing = mock(classOf[ObjectListing])
